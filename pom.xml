@@ -30,7 +30,7 @@
     <jacoco.version>0.8.5</jacoco.version>
     <nohttp-checkstyle.version>0.0.4.RELEASE</nohttp-checkstyle.version>
     <spring-format.version>0.0.25</spring-format.version>
-      <kotlin.version>1.5.30-RC</kotlin.version>
+    <kotlin.version>1.5.30</kotlin.version>
   </properties>
 
   <dependencies>
@@ -141,28 +141,6 @@
 
   <build>
     <plugins>
-      <plugin>
-        <artifactId>kotlin-maven-plugin</artifactId>
-        <groupId>org.jetbrains.kotlin</groupId>
-        <version>${kotlin.version}</version>
-
-        <configuration>
-          <compilerPlugins>
-            <!-- Or "spring" for the Spring support -->
-            <plugin>all-open</plugin>
-          </compilerPlugins>
-
-        </configuration>
-
-        <dependencies>
-          <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-maven-allopen</artifactId>
-            <version>${kotlin.version}</version>
-          </dependency>
-        </dependencies>
-      </plugin>
-
       <plugin>
         <groupId>io.spring.javaformat</groupId>
         <artifactId>spring-javaformat-maven-plugin</artifactId>
@@ -333,9 +311,35 @@
                     </goals>
                 </execution>
             </executions>
-            <configuration>
-                <jvmTarget>1.8</jvmTarget>
-            </configuration>
+          <configuration>
+            <jvmTarget>1.8</jvmTarget>
+            <compilerPlugins>
+              <plugin>jpa</plugin>
+              <plugin>spring</plugin>
+              <plugin>all-open</plugin>
+            </compilerPlugins>
+            <args>
+              <arg>-Xjsr305=strict</arg>
+            </args>
+            <pluginOptions>
+              <!-- Each annotation is placed on its own line -->
+              <option>all-open:annotation=javax.persistence.Entity</option>
+              <option>all-open:annotation=javax.persistence.Embeddable</option>
+              <option>all-open:annotation=javax.persistence.MappedSuperclass</option>
+            </pluginOptions>
+          </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>org.jetbrains.kotlin</groupId>
+              <artifactId>kotlin-maven-noarg</artifactId>
+              <version>${kotlin.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.jetbrains.kotlin</groupId>
+              <artifactId>kotlin-maven-allopen</artifactId>
+              <version>${kotlin.version}</version>
+            </dependency>
+          </dependencies>
         </plugin>
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>

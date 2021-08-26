@@ -7,7 +7,7 @@ import javax.validation.constraints.*
 
 @Entity
 @Table(name = "adoptions")
-open class Adoption: BaseEntity() {
+class Adoption: BaseEntity() {
     @Column
     @NotEmpty
     var name = ""
