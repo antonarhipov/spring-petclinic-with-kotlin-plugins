@@ -316,17 +316,17 @@
             <compilerPlugins>
               <plugin>jpa</plugin>
               <plugin>spring</plugin>
-              <plugin>all-open</plugin>
+<!--              <plugin>all-open</plugin>-->
             </compilerPlugins>
             <args>
               <arg>-Xjsr305=strict</arg>
             </args>
-            <pluginOptions>
-              <!-- Each annotation is placed on its own line -->
-              <option>all-open:annotation=javax.persistence.Entity</option>
-              <option>all-open:annotation=javax.persistence.Embeddable</option>
-              <option>all-open:annotation=javax.persistence.MappedSuperclass</option>
-            </pluginOptions>
+<!--            <pluginOptions>-->
+<!--              &lt;!&ndash; Each annotation is placed on its own line &ndash;&gt;-->
+<!--              <option>all-open:annotation=javax.persistence.Entity</option>-->
+<!--              <option>all-open:annotation=javax.persistence.Embeddable</option>-->
+<!--              <option>all-open:annotation=javax.persistence.MappedSuperclass</option>-->
+<!--            </pluginOptions>-->
           </configuration>
           <dependencies>
             <dependency>
